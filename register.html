@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        form {
+            width: 300px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #333;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .error {
+            color: red;
+            margin-top: 5px;
+        }
+    </style>
+    <script type="text/javascript">
+        function validate() {
+            var uname = document.register.username.value;
+            var pwd = document.register.password.value;
+            var cnfpwd = document.register.confirmpassword.value;
+            var error = document.getElementById('error');
+
+            if (uname == "") {
+                error.innerText = "Username cannot be empty";
+                return false;
+            } else if (pwd == "") {
+                error.innerText = "Password cannot be empty";
+                return false;
+            } else if (cnfpwd == "") {
+                error.innerText = "Confirm password cannot be empty";
+                return false;
+            } else if (pwd != cnfpwd) {
+                error.innerText = "Password does not match with confirm password";
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <form name="register" action="RegisterServlet" method="post" onsubmit="return validate()">
+        <label>Username</label>
+        <input type="text" name="username" required>
+        <br>
+        <label>Password</label>
+        <input type="password" name="password" required>
+        <br>
+        <label>Confirm Password</label>
+        <input type="password" name="confirmpassword" required>
+        <br>
+        <input type="submit" value="Register">
+        <div id="error" class="error"></div>
+    </form>
+</body>
+</html>
